@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="general/robot">
+<g id="Vector">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M29 5H19V9H22V11H7V42H41V11H26V9H29V5ZM11 38V15H37V38H11ZM1 21V32H5V21H1ZM43 21V32H47V21H43ZM21 23.5C21 22.1193 19.8807 21 18.5 21C17.1193 21 16 22.1193 16 23.5C16 24.8807 17.1193 26 18.5 26C19.8807 26 21 24.8807 21 23.5ZM32 23.5C32 22.1193 30.8807 21 29.5 21C28.1193 21 27 22.1193 27 23.5C27 24.8807 28.1193 26 29.5 26C30.8807 26 32 24.8807 32 23.5Z" fill="#4E5969"/>
+<path d="M32 30H16V34H32V30Z" fill="#4E5969"/>
+</g>
+</g>
+</svg>
