@@ -2,6 +2,36 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family:
+    'PingFang SC',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+/**
+ * Button 没有 minWidth 组件 token。
+ * 带文字的实心、描边、虚线、填充按钮走这层 90px。
+ * 纯图标、圆形、text、link 保持内容宽度。
+ */
+.ant-btn:not(
+  .ant-btn-icon-only,
+  .ant-btn-circle,
+  .ant-btn-text,
+  .ant-btn-link,
+  .ant-btn-variant-text,
+  .ant-btn-variant-link
+) {
+  min-width: 90px;
 }
 
 #root {

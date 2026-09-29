@@ -14,6 +14,14 @@ const sizeToken = {
   borderRadiusXS: 2,
 };
 
+/** 正文 PingFang SC。后面保留 antd 默认备用栈，系统没有该字体时仍能显示 */
+const fontToken = {
+  fontFamily:
+    "'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+  /** 标题和选中项。antd 默认是 600，正文保持 400 */
+  fontWeightStrong: 500,
+};
+
 const lightColorToken = {
   colorPrimary: '#5555F7',
   colorPrimaryHover: '#7777F9',
@@ -43,9 +51,10 @@ const lightColorToken = {
   colorErrorBgHover: '#F8B0AA',
   colorErrorBorder: '#F48980',
 
-  colorLink: '#3491FA',
-  colorLinkHover: '#5DA7FB',
-  colorLinkActive: '#3188EB',
+  /** 链接色跟主色，不再单独维护 link-* */
+  colorLink: '#5555F7',
+  colorLinkHover: '#7777F9',
+  colorLinkActive: '#4D4DDE',
 
   colorText: '#1D2129',
   colorTextSecondary: '#4E5969',
@@ -85,9 +94,10 @@ const darkColorToken = {
   colorErrorBgHover: '#A1161F',
   colorErrorBorder: '#CB2E34',
 
-  colorLink: '#5AAAFB',
-  colorLinkHover: '#469AFA',
-  colorLinkActive: '#7DC1FC',
+  /** 链接色跟主色，不再单独维护 link-* */
+  colorLink: '#7B7FF9',
+  colorLinkHover: '#6161F7',
+  colorLinkActive: '#979EFA',
 
   colorText: '#F6F6F6',
   colorTextSecondary: 'rgba(197, 197, 197, 0.77)',
@@ -100,6 +110,19 @@ const darkColorToken = {
 const componentToken = {
   Modal: {
     borderRadiusLG: 8,
+    /** 弹层内容区四周内边距 */
+    contentPadding: 24,
+    /** 标题 16px × 1.375 = 22px 行高 */
+    titleFontSize: 16,
+    titleLineHeight: 1.375,
+    /** 标题区到内容区 */
+    headerMarginBottom: 24,
+    /** 非表单内容区。表单弹层用 styles.body.padding 盖回 0 */
+    bodyPadding: '16px 0',
+    /** 内容区到底部按钮 */
+    footerMarginTop: 24,
+    /** 信息 / 成功 / 警告 / 错误等确认弹框，按钮区同上 */
+    confirmBtnsMarginTop: 24,
   },
   Select: {
     borderRadiusLG: 4,
@@ -111,6 +134,7 @@ export const lightTheme: ThemeConfig = {
   algorithm: theme.defaultAlgorithm,
   token: {
     ...sizeToken,
+    ...fontToken,
     ...lightColorToken,
   },
   components: componentToken,
@@ -121,6 +145,7 @@ export const darkTheme: ThemeConfig = {
   algorithm: theme.darkAlgorithm,
   token: {
     ...sizeToken,
+    ...fontToken,
     ...darkColorToken,
   },
   components: componentToken,

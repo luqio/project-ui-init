@@ -19,5 +19,6 @@ CLI 未安装时执行 `npm install -g @ant-design/cli`。
 
 - 从 `antd` 包根导入组件，从图标包导入图标。不要在页面里再次引入 `antd/dist/reset.css`。
 - 主题只通过 `ConfigProvider` 使用 `lightTheme` 或 `darkTheme`。
+- Modal 默认垂直居中：根上的 `ConfigProvider` 写 `modal={{ centered: true }}`。
 - 表单使用 `Form.Item` 的 `name`。反馈、确认框、省略提示的用法见 `.agents/skills/frontend-interaction/SKILL.md`。
 - 组件外观优先改 `src/theme/theme.ts` 的组件 token。覆盖规则见 `docs/主题方案.md`。

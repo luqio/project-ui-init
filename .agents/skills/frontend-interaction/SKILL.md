@@ -25,6 +25,9 @@ description: >-
 - 新表单用 antd `Form`、`Input`、`Button`。提交前 `validateFields`，滚到第一个错误字段。
 - 请求发出后，触发这次请求的按钮进入 `loading`，结束前不能再次提交。
 - 弹层里提交失败：弹层保持打开，用 `message.error`。成功后再关弹层，并 `message.success`。
+- 表单弹层写 `styles={{ body: { padding: 0 } }}`。非表单内容区默认是 `16px 0`，见 `docs/主题方案.md`。
+- 创建、编辑类表单弹层写 `maskClosable={false}`，不允许点遮罩关闭。
+- Modal 默认垂直居中，由根 `ConfigProvider` 的 `modal.centered` 统一打开，业务里一般不用再写 `centered`。
 
 ## 危险操作
 

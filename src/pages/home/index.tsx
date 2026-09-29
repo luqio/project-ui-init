@@ -3,7 +3,6 @@ import {
   Dropdown,
   Flex,
   Input,
-  Modal,
   Pagination,
   Select,
   Spin,
@@ -12,7 +11,7 @@ import {
   Tabs,
   Typography,
 } from 'antd';
-import { useState } from 'react';
+import ModalExamples from './components/ModalExamples';
 import styles from './index.module.css';
 
 interface HomePageProps {
@@ -54,8 +53,6 @@ function SectionTitle({ children }: { children: string }) {
 }
 
 function HomePage({ isDark, onThemeChange }: HomePageProps) {
-  const [open, setOpen] = useState(false);
-
   return (
     <Flex vertical align="flex-start" gap={28} className={styles.page}>
       <Flex align="center" gap={8}>
@@ -127,7 +124,11 @@ function HomePage({ isDark, onThemeChange }: HomePageProps) {
             link
           </Button>
         </Flex>
-        <Button onClick={() => setOpen(true)}>打开 Modal</Button>
+      </Flex>
+
+      <Flex vertical align="flex-start" gap={12}>
+        <SectionTitle>Modal</SectionTitle>
+        <ModalExamples />
       </Flex>
 
       <Flex vertical align="flex-start" gap={12}>
@@ -214,9 +215,17 @@ function HomePage({ isDark, onThemeChange }: HomePageProps) {
         </Flex>
         <Flex gap={8} wrap>
           <Input disabled placeholder="禁用" className={styles.w180} />
-          <Input status="warning" placeholder="warning" className={styles.w180} />
+          <Input
+            status="warning"
+            placeholder="warning"
+            className={styles.w180}
+          />
           <Input status="error" placeholder="error" className={styles.w180} />
-          <Input addonBefore="https://" placeholder="前后缀" className={styles.w240} />
+          <Input
+            addonBefore="https://"
+            placeholder="前后缀"
+            className={styles.w240}
+          />
         </Flex>
         <Flex gap={8} wrap>
           <Input size="small" placeholder="small" className={styles.w140} />
@@ -272,7 +281,9 @@ function HomePage({ isDark, onThemeChange }: HomePageProps) {
           <Dropdown menu={{ items: menuItems }} trigger={['contextMenu']}>
             <Button>contextMenu</Button>
           </Dropdown>
-          <Dropdown.Button menu={{ items: menuItems }}>按钮菜单</Dropdown.Button>
+          <Dropdown.Button menu={{ items: menuItems }}>
+            按钮菜单
+          </Dropdown.Button>
           <Dropdown.Button menu={{ items: menuItems }} type="primary">
             primary
           </Dropdown.Button>
@@ -297,15 +308,6 @@ function HomePage({ isDark, onThemeChange }: HomePageProps) {
         <Steps current={1} type="dot" items={stepItems} />
         <Steps current={1} orientation="vertical" items={stepItems} />
       </Flex>
-
-      <Modal
-        title="Modal"
-        open={open}
-        onCancel={() => setOpen(false)}
-        onOk={() => setOpen(false)}
-      >
-        只有 Modal 使用 8px 圆角。
-      </Modal>
     </Flex>
   );
 }
