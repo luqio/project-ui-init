@@ -1,6 +1,7 @@
 import { App, Button, Flex, Form, Input, Modal, Typography } from 'antd';
 import { useState } from 'react';
 import { getErrorMessage } from '@/utils/error';
+import SectionTitle from '../SectionTitle';
 
 interface ProjectFormValues {
   name: string;
@@ -78,7 +79,8 @@ function ModalExamples() {
   }
 
   return (
-    <>
+    <Flex vertical align="flex-start" gap={12}>
+      <SectionTitle>Modal</SectionTitle>
       <Flex gap={8} wrap>
         <Button onClick={() => setBasicOpen(true)}>基础</Button>
         <Button onClick={() => setFormOpen(true)}>表单</Button>
@@ -151,7 +153,7 @@ function ModalExamples() {
       >
         内容加载完成后显示。
       </Modal>
-    </>
+    </Flex>
   );
 }
 

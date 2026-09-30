@@ -1,5 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from '@/pages/home';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import PageLayout from '@/components/PageLayout';
+import BasicPage from '@/pages/basic';
+import GlobalPage from '@/pages/global';
 
 interface RouteComponentProps {
   isDark: boolean;
@@ -11,9 +13,13 @@ function RouteComponent({ isDark, onThemeChange }: RouteComponentProps) {
     <BrowserRouter>
       <Routes>
         <Route
-          index
-          element={<HomePage isDark={isDark} onThemeChange={onThemeChange} />}
-        />
+          element={<PageLayout isDark={isDark} onThemeChange={onThemeChange} />}
+        >
+          <Route index element={<Navigate to="/basic" replace />} />
+          <Route path="basic" element={<BasicPage />} />
+          <Route path="global" element={<GlobalPage />} />
+          <Route path="*" element={<Navigate to="/basic" replace />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

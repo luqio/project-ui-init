@@ -1,7 +1,67 @@
+html {
+  height: 100%;
+  min-width: 1040px;
+  min-height: 700px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 1040px;
+  min-height: 100%;
+}
+
+#root,
+#root > .ant-app {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  min-width: 1040px;
+}
+
+.page-layout {
+  flex: 1 0 auto;
+  min-width: 1040px;
+}
+
+.page-layout__content {
+  flex: 1 0 auto;
+  min-width: 0;
+}
+
+/**
+ * 视口不小于 1040×700：页面不滚，只滚内容区，左导固定。
+ * 更小时回到上面的整页滚动，内容区不再单独滚动。
+ */
+@media (min-width: 1040px) and (min-height: 700px) {
+  html,
+  body,
+  #root,
+  #root > .ant-app,
+  .page-layout,
+  .page-layout__main,
+  .page-layout__sider {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #root,
+  #root > .ant-app,
+  .page-layout,
+  .page-layout__main {
+    flex-shrink: 1;
+    min-height: 0;
+  }
+
+  .page-layout__content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+  }
+}
+
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
   font-family:
     'PingFang SC',
     -apple-system,
@@ -34,6 +94,75 @@ body {
   min-width: 90px;
 }
 
-#root {
-  min-height: 100vh;
+/**
+ * Firefox 的 scrollbar-width 不继承，滚动容器都要写到。
+ * 滑块用文字三级色，轨道透明。
+ */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(
+      in srgb,
+      var(--ant-color-text-tertiary) 26%,
+      transparent
+    )
+    transparent;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(
+    in srgb,
+    var(--ant-color-text-tertiary) 26%,
+    transparent
+  );
+  background-clip: content-box;
+  border: 2px solid transparent;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(
+    in srgb,
+    var(--ant-color-text-tertiary) 48%,
+    transparent
+  );
+  background-clip: content-box;
+}
+
+/**
+ * 卡片列表按浏览器宽度分列，不按内容区宽度。
+ * 默认 2 列；1280–1439 为 3 列；1440–1919 为 4 列；1920 及以上为 5 列，单列不窄于 300px。
+ */
+.card-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (min-width: 1280px) and (max-width: 1439.98px) {
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919.98px) {
+  .card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1920px) {
+  .card-grid {
+    grid-template-columns: repeat(5, minmax(300px, 1fr));
+  }
 }

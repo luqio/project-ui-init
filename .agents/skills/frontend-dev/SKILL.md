@@ -19,10 +19,10 @@ React 19、TypeScript（`strict: true`）、Vite、antd 6、React Router 7、axi
 ```
 src/
   pages/<page>/index.tsx              # 页面入口，只做组装
-  pages/<page>/index.module.css
+  pages/<page>/index.module.less      # 页面私有样式，CSS Modules
   pages/<page>/components/<Name>/     # 页面私有组件
   pages/<page>/hooks/
-  components/<Name>/                  # 跨页面组件
+  components/<Name>/                  # 公共组件，样式为全局 css，文件名短横线
   services/request.ts
   services/<domain>.ts            # 按后端域封装，由 services/index.ts 再导出
   types/<domain>.ts
@@ -34,23 +34,21 @@ src/
 ```
 
 - 目录名小写短横线，集合用复数，如 `components`、`utils`、`assets`。
-- 组件目录 PascalCase，入口 `index.tsx`，样式 `index.module.css`。每个组件用自己的样式文件，不共用别人的 `module.css`。
+- 组件目录 PascalCase，入口 `index.tsx`。页面私有样式用 `index.module.less`，类名 camelCase，不共用别人的 `module.less`。
+- 公共组件不用 CSS Modules。样式写在同目录的全局 `.css`，文件名和类名用短横线。需要表达层级时用 BEM，如 `page-layout`、`page-layout__title`。
 - 引用写到目录，不写 `/index`。同级组件用相对路径，跨目录用 `@/`。
 - 组件、页面默认导出。工具函数具名导出。组件导入用大驼峰，实例用小驼峰。
 - 图片文件名小写短横线，需要倍率时写成 `logo@2x.png`。
 - 页面入口只组装。业务放在页面私有组件里。
-- 一个文件尽量只放一个函数组件。如果tsx文件超过 300 行，考虑拆成更小的组件，这不是硬性规定。
+- 一个文件只放一个函数组件。同一个文件里有两个及以上函数组件时，拆到各自的目录。
 - 同一结构出现至少两次、差异能用 props 表达时，抽到 `components/`。
-
-
+- 去掉某个功能时，一并删掉只为它存在的页面、路由、导航、组件、样式、资源和说明。不要只摘入口，把相关代码留在仓库里。
 
 ## 命名
 
 - 变量、函数小驼峰。业务函数用动词加名词，如 `attachRoleToUser`。
 - 常量、枚举成员全大写下划线，如 `DEFAULT_SIZE`。
 - 接口、类型别名、类大驼峰，属性小驼峰。泛型单个参数用 `T`。
-
-
 
 ## TypeScript
 
@@ -61,8 +59,6 @@ src/
 - 异步用 `async/await` 和 `try/catch`，不用 `.then()`。
 - 函数组件。Props 用 interface。
 
-
-
 ## React
 
 - Hooks 只在函数最顶层调用，不放进循环、条件或嵌套函数。
@@ -70,13 +66,13 @@ src/
 - 布尔属性为 `true` 时省略取值。无子节点的标签自闭合。
 - 可复用的纯函数不要写在组件里，按功能放到 `utils/<name>.ts`。
 
-
-
 ## 样式
 
-CSS Modules，类名 camelCase。展开书写。少用 `*`，不用 ID 选择器，不用无语义标签选择器。全局、需要表达层级的样式才用 BEM；CSS Modules 里不用 BEM。
+页面私有样式用 CSS Modules，类名 camelCase。公共组件（`src/components`）样式写在同目录的全局 `.css`，文件名和类名短横线，层级用 BEM。
 
-颜色、圆角、字号用 antd CSS 变量（`theme.ts` 里 `cssVar: {}`）或主题 token，不在组件里写散落色值。宽高、间距、背景写在 `index.module.css`，不用 `style`。
+展开书写。少用 `*`，不用 ID 选择器，不用无语义标签选择器。CSS Modules 里不用 BEM。
+
+颜色、圆角、字号用 antd CSS 变量（`theme.ts` 里 `cssVar: {}`）或主题 token，不在组件里写散落色值。宽高、间距、背景写在样式文件里，不用 `style`。
 
 ## 请求
 
